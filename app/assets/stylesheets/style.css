@@ -1,0 +1,34 @@
+/* === GENERAL === */
+
+body{
+	padding-top: 50px;
+	background: url('../img/texture.png') top left repeat;
+
+}
+
+.wrap{
+	padding-top: 150px;
+	padding-bottom: 50px;
+}
+
+
+h1{
+	font-family: 'graduate', cursive;  /* Esta linea se saca de google fonts */
+}
+
+
+
+/* === Footer === */
+#footer{
+	padding: 120px;
+	background: #22313F;
+	color: white;
+}
+
+#footer a{
+	color: #F5AB35;
+}
+
+#footer a:hover{
+	color: #F9690E;
+}
