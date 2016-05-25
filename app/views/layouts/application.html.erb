@@ -11,7 +11,7 @@
 
    <!-- Header  -->
    <header>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>                            
-               <li><%= link_to "Nuevo Post", new_post_path %></li>
+               <li><%= #link_to "Nuevo Post", new_post_path %></li>
                <li><%= link_to 'Salir', destroy_user_session_path, method: :delete %></li>
             <% else %>
                <li><%= link_to "Ingresar", new_user_session_path %></li>
@@ -42,7 +42,7 @@
     </nav>
   </header>
     <!-- End Header  -->
-    <!--<br><br><br> -->
+
     
   <% if flash[:notice] %>
     <div class="alert alert-info"> <%= flash[:notice] %> </div>
