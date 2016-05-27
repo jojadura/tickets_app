@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <% @categories.each do |category| %>
+                <div class="category-title">
+                	<%= link_to category.title, category %>                		
+                </div>
+                <span>Publicado por: <%= category.user.email %> hace alrededor de <%= time_ago_in_words category.created_at %> </span>
+ 
+                <% if signed_in? %>
+                    <% if current_user.id == category.user.id %>
+                        <div class="article-tools">
+                            <%= link_to "<span class='glyphicon glyphicon-pencil'></span> Editar".html_safe, edit_category_path(category) %>
+                            <%= link_to "<span class='glyphicon glyphicon-trash'></span> Eliminar".html_safe, category_path(category), method: :delete, data: { confirm: "¿Desea eliminar esta categoría?" } %>
+                            </div>
+                    <% end %>
+                <% end %>                
+            <% end %>
+        </div> 
+    </div> <!-- .row-->
+</div> <!-- .container -->

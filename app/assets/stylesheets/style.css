@@ -27,3 +27,10 @@ h1{
 #footer a:hover{
 	color: #F9690E;
 }
+
+
+.navbar-default {
+  background-color:teal;
+  background-image: none;
+  background-repeat: no-repeat;
+}
