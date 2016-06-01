@@ -1,17 +1,14 @@
 # == Schema Information
 #
-# Table name: categories
+# Table name: sub_categories
 #
 #  id          :integer          not null, primary key
-#  title       :string
-#  description :string
+#  name        :string
+#  category_id :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :integer
 #
 
-class Category < ActiveRecord::Base
-	belongs_to :user
-	has_many :subcategory
+class SubCategory < ActiveRecord::Base
+  belongs_to :category
 end
-

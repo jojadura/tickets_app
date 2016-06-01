@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
+			<h1><%= form_title_sub %></h1>		
+			<% if @subcategory.errors.any? %>
+			  <div class="alert alert-danger">
+			    <ul>
+			    <% @subcategory.errors.full_messages.each do |msg| %>
+			      <li><%= msg %></li>
+			    <% end %>
+			    </ul>
+			  </div>
+			<% end %>			
+
+			<% if signed_in? %>
+				<%= form_for @subcategory do |f| %>
+					<div class="form-group">
+						<%= f.text_field :title, class: "form-control input-lg", placeholder: "Ingrese el titulo de la Sub-Categoría" %>
+					</div>
+                    <div class="form-group">
+                      <label for="group" class="control-label col-md-3">Group</label>
+                      <div class="col-md-5">
+                        <select name="group" id="group" class="form-control">
+                          <option value="">Select group</option>
+                          <option value="1">Family</option>
+                          <option value="2">Friend</option>
+                          <option value="3">Other</option>
+                        </select>
+                      </div>					
+					<div>
+						<%= f.submit form_title, class: "btn btn-primary btn-lg" %> <%= link_to "Cancelar", subcategories_path, class: "btn btn-primary btn-lg" %>
+					</div>	
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>

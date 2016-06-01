@@ -27,6 +27,7 @@ gem 'annotate'
 gem 'devise'
 #Markdown
 gem 'redcarpet'
+gem 'coffee-script-source', '1.8.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password

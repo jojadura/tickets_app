@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+
   resources :categories
+  resources :subcategories
 
   devise_for :users
 
-  root 'welcome#index'
+  root 'categories#index'
 
   
 end
