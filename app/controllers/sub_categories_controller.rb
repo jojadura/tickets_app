@@ -1,7 +1,7 @@
-class SubcategoriesController < ApplicationController
+class SubCategoriesController < ApplicationController
 
   def index
-  	@subcategory = SubCategory.all.order("created_at DESC");
+  	@subcategories = SubCategory.all.order("created_at DESC");
   end
 
   def new
@@ -12,7 +12,7 @@ class SubcategoriesController < ApplicationController
     @subcategory = SubCategory.new(subcategory_params)
     @subcategory.user = current_user
     if @subcategory.save
-      redirect_to subcategories_path, notice: "La Sub-Categoría fue creada exitosamente."
+      redirect_to sub_categories_path, notice: "La Sub-Categoría fue creada exitosamente."
     else
       render :new
     end		
@@ -20,6 +20,6 @@ class SubcategoriesController < ApplicationController
 
   private 
     def subcategory_params
-      params.require(:subcategory).permit(:title, :category_id)		
+      params.require(:sub_category).permit(:name, :category_id)
     end
 end

@@ -1,3 +1,9 @@
 body {
     padding-top: 70px;
 }
+
+#body-categories{
+	color: #A09FA1;
+	padding-top: 26px;
+	font-size: 14px;
+}

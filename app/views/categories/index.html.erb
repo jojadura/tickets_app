@@ -1,21 +1,35 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <% @categories.each do |category| %>
-                <div class="category-title">
-                	<%= link_to category.title, category %>                		
-                </div>
-                <span>Publicado por: <%= category.user.email %> hace alrededor de <%= time_ago_in_words category.created_at %> </span>
- 
-                <% if signed_in? %>
-                    <% if current_user.id == category.user.id %>
-                        <div class="article-tools">
-                            <%= link_to "<span class='glyphicon glyphicon-pencil'></span> Editar".html_safe, edit_category_path(category) %>
-                            <%= link_to "<span class='glyphicon glyphicon-trash'></span> Eliminar".html_safe, category_path(category), method: :delete, data: { confirm: "¿Desea eliminar esta categoría?" } %>
-                            </div>
-                    <% end %>
-                <% end %>                
-            <% end %>
+        <div class="col-sm-8 col-sm-offset-1">
+            <table class="table table-responsive">
+                <thead>
+                    <th class="col-sm-2"></th>
+                    <th class="col-sm-4"></th>
+                    <th class="col-sm-6"></th>
+                </thead>
+                <h2>Categorías Soporte CCI</h2>
+                <% @categories.each do |category| %>
+                  <tr>
+                    <td class="text-left"><h3><%= link_to category.title, edit_category_path(category) %>
+                    <td class="text-left">
+                      <div id="body-categories">
+                        <span>Creado por <%= category.user.email %> hace <%= time_ago_in_words category.created_at %> </span>
+                      </div>              
+                    </td>
+                    <td>
+                        <% if signed_in? %>
+                            <% if current_user.id == category.user.id %>
+                                <div id="body-categories">
+                                    <%= link_to "<span class='glyphicon glyphicon-pencil'>&nbsp;</span>".html_safe, edit_category_path(category) %>
+                                    <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, category_path(category), method: :delete, data: { confirm: "¿Desea eliminar esta categoría?" } %>
+                                    </div>
+                            <% end %>
+                        <% end %>                                    
+                    </td>
+                    </div>
+                  </tr>
+                <% end %>
+              </table>         
         </div> 
     </div> <!-- .row-->
 </div> <!-- .container -->
