@@ -7,3 +7,10 @@ body {
 	padding-top: 26px;
 	font-size: 14px;
 }
+
+#colorName-cat{
+	text-align: left;
+	color: #ED564E;
+	padding-top: 10px;
+	font-size: 14px;
+}

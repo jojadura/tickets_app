@@ -18,6 +18,27 @@ class SubCategoriesController < ApplicationController
     end		
   end
 
+  def edit
+    @subcategory = SubCategory.find(params[:id])
+  end
+
+  def update
+      @subcategory = SubCategory.find(params[:id])
+    if @subcategory.update(subcategory_params)
+      redirect_to sub_categories_path, notice: "La Categoría fue modificada exitosamente."
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @subcategory = SubCategory.find(params[:id])
+    @subcategory.destroy
+
+    redirect_to sub_categories_path, notice: "La Categoría fue eliminada exitosamente."
+  end
+
+
   private 
     def subcategory_params
       params.require(:sub_category).permit(:name, :category_id)

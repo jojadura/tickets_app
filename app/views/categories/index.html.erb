@@ -10,7 +10,7 @@
                 <h2>Categorías Soporte CCI</h2>
                 <% @categories.each do |category| %>
                   <tr>
-                    <td class="text-left"><h3><%= link_to category.title, edit_category_path(category) %>
+                    <td id="colorName-cat"><h3><%= category.title %>
                     <td class="text-left">
                       <div id="body-categories">
                         <span>Creado por <%= category.user.email %> hace <%= time_ago_in_words category.created_at %> </span>

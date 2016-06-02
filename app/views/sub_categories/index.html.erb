@@ -1,21 +1,35 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <% @subcategories.each do |subcategory| %>
-                <div class="category-title">
-                	<%= link_to subcategory.name, subcategory %>                		
-                </div>
-                <span>Publicado por: <%= subcategory.user.email %> hace alrededor de <%= time_ago_in_words subcategory.created_at %> </span>
- 
-                <% if signed_in? %>
-                    <% if current_user.id == subcategory.user.id %>
-                        <div class="article-tools">
-                            <%= link_to "<span class='glyphicon glyphicon-pencil'></span> Editar".html_safe, edit_sub_category_path(subcategory) %>
-                            <%= link_to "<span class='glyphicon glyphicon-trash'></span> Eliminar".html_safe, sub_category_path(subcategory), method: :delete, data: { confirm: "¿Desea eliminar esta categoría?" } %>
-                            </div>
-                    <% end %>
-                <% end %>                
-            <% end %>
+        <div class="col-sm-8 col-sm-offset-1">
+            <table class="table table-responsive">
+                <thead>
+                    <th class="col-sm-2"></th>
+                    <th class="col-sm-4"></th>
+                    <th class="col-sm-6"></th>
+                </thead>
+                <h2>Sub-Categorías Soporte CCI</h2>
+                <% @subcategories.each do |subcategory| %>
+                  <tr>
+                    <td id="colorName-cat"><h3><%= subcategory.name %>
+                    <td class="text-left">
+                      <div id="body-categories">
+                        <span>Creado por <%= subcategory.user.email %> hace <%= time_ago_in_words subcategory.created_at %> </span>
+                      </div>              
+                    </td>
+                    <td>
+                        <% if signed_in? %>
+                            <% if current_user.id == subcategory.user.id %>
+                                <div id="body-categories">
+                                    <%= link_to "<span class='glyphicon glyphicon-pencil'>&nbsp;</span>".html_safe, edit_sub_category_path(subcategory) %>
+                                    <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, sub_category_path(subcategory), method: :delete, data: { confirm: "¿Desea eliminar esta SubCategoría?" } %>
+                                    </div>
+                            <% end %>
+                        <% end %>                                    
+                    </td>
+                    </div>
+                  </tr>
+                <% end %>
+              </table>         
         </div> 
     </div> <!-- .row-->
 </div> <!-- .container -->
