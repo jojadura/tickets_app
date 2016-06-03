@@ -1,7 +1,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6 col-sm-offset-3">
-			<h1><%= form_title(@subcategory) %></h1>		
+			<%  if form_title(@subcategory) %>
+					<h1>Crear Sub-Categoria</h1>		
+			<% end %>
 			<% if @subcategory.errors.any? %>
 			  <div class="alert alert-danger">
 			    <ul>
@@ -11,7 +13,6 @@
 			    </ul>
 			  </div>
 			<% end %>			
-
 			<% if signed_in? %>
 				<%= form_for @subcategory do |f| %>
                     <div  class="form-group">

@@ -1,7 +1,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6 col-sm-offset-3">
-			<h1><%= form_title(@category) %></h1>		
+			<%  if form_title(@category) %>
+					<h1>Crear Categoria</h1>		
+			<% end %>
 			<% if @category.errors.any? %>
 			  <div class="alert alert-danger">
 			    <ul>
