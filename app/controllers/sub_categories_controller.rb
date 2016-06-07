@@ -37,8 +37,7 @@ class SubCategoriesController < ApplicationController
 
     redirect_to sub_categories_path, notice: "La Categoría fue eliminada exitosamente."
   end
-
-
+  
   private 
     def subcategory_params
       params.require(:sub_category).permit(:name, :category_id)
