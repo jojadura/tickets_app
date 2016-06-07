@@ -22,7 +22,6 @@
 				   <%= f.label :category_id %><br />
 				   <%= f.collection_select :category_id, Category.order(:title), :id, :title, {prompt: "-- Selecione una Categoria --"}, {class: "form-control"} %>            	
 				</div>
-
 			    <div class="form-group">
 			      <%= f.label :subcategory_id, "SubCategoría" %><br />
 			      <%= f.grouped_collection_select :subcategory_id, Category.order(:title), :sub_categories, :title, :id, :name, include_blank: true %>    

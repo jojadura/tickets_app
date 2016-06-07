@@ -18,6 +18,10 @@ class SupportsController < ApplicationController
     end		
   end
 
+  def subcategories
+    @sub_categories = Subcategory.where(category_id = params[:category_id])
+  end  
+
   private 
     def support_params
       params.require(:support).permit(:titulo, :cuerpo)		
