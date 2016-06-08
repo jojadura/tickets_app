@@ -19,7 +19,7 @@ class SupportsController < ApplicationController
   end
 
   def subcategories
-    @sub_categories = Subcategory.where(category_id = params[:category_id])
+    @sub_categories = SubCategory.where(category_id = params[:category_id])
   end  
 
   private 
