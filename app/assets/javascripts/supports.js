@@ -5,8 +5,8 @@ $(document).ready(function(){
     $.ajax({
       url: '/supports/'+ sub +'/subcategories',
       type: 'GET',
-    }).done(function(data) {
-        //select ?? option?
+    }).done(function(data) {        
+        console.log(data)
     });  //ajax
   });
 })
