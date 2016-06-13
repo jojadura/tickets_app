@@ -18,6 +18,23 @@
 #
 
 class User < ActiveRecord::Base
+
+  validates :name, :email, presence: {message: "es requerido"} 
+ 
+  after_initialize :set_default_role, :if => :new_record?
+
+  def set_default_role
+    self.role_id ||= Role.usuario.id
+  end
+  def admin?
+    role.name=="Administrador"? true:false
+  end
+  def usuario?
+    role.name=="Usuario"? true:false
+  end
+  def director?
+  	role.name=="Director"? true:false
+  end
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -25,5 +42,6 @@ class User < ActiveRecord::Base
 
   has_many :categories
   has_many :sub_categories
+  belongs_to :role
 end
 

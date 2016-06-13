@@ -28,7 +28,9 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>                            
+            <% if user_signed_in? %>
+              <%= render 'layouts/navegacion' %>
+               <li><%= link_to current_user.name, current_user  %></li>                           
                <li><%= link_to 'Salir', destroy_user_session_path, method: :delete %></li>
             <% else %>
                <li><%= link_to "Ingresar", new_user_session_path %></li>
