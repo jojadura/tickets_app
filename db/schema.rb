@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603170150) do
+ActiveRecord::Schema.define(version: 20160613162802) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160603170150) do
     t.integer  "user_id"
   end
 
-  add_index "categories", ["user_id"], name: "index_categories_on_user_id"
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
 
   create_table "sub_categories", force: :cascade do |t|
     t.string   "name"
@@ -31,20 +34,18 @@ ActiveRecord::Schema.define(version: 20160603170150) do
     t.integer  "user_id"
   end
 
-  add_index "sub_categories", ["category_id"], name: "index_sub_categories_on_category_id"
-  add_index "sub_categories", ["user_id"], name: "index_sub_categories_on_user_id"
+  add_index "sub_categories", ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
+  add_index "sub_categories", ["user_id"], name: "index_sub_categories_on_user_id", using: :btree
 
   create_table "supports", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "category_id"
-    t.integer  "subcategory_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "sub_categories_id"
   end
 
-  add_index "supports", ["category_id"], name: "index_supports_on_category_id"
-  add_index "supports", ["subcategory_id"], name: "index_supports_on_subcategory_id"
+  add_index "supports", ["sub_categories_id"], name: "index_supports_on_sub_categories_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -61,7 +62,10 @@ ActiveRecord::Schema.define(version: 20160603170150) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "categories", "users"
+  add_foreign_key "sub_categories", "categories"
+  add_foreign_key "sub_categories", "users"
 end
