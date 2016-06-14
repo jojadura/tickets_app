@@ -1,10 +1,10 @@
 <% if current_user.admin? %>
  <li>item admin 1</li>
- <li>item admin 2</li>
+ <li><%= link_to "Administración de usuarios", users_path %></li>
 <% end %>
 <% if current_user.usuario? %>
  <li>item usuario 1</li>
- <li>item usuario 2</li>
+  <li><%= link_to "Administración de usuarios", users_path %></li>
 <% end %>
 <% if current_user.director? %>
  <li>item director 1</li>
