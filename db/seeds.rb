@@ -11,5 +11,17 @@
     puts "Se creo Role  Director de Area"
     Role.find_or_create_by(:name=>"Usuario")
     puts "Se creo Role Usuario"
-    User.find_or_create_by()
+    User.create!({
+    	:email=>'admin@gmmail.com',
+    	:password=> 'changeme',
+        :sign_in_count=>0,
+    	:encrypted_password=> User.new(:password => 'changeme').encrypted_password,
+    	:name=> 'Administrador',
+    	:role_id => Role.admin.id,
+    	:created_at=> Time.now.strftime("%Y-%m-%d"),
+        :updated_at=> Time.now.strftime("%Y-%m-%d"),
+         })
+    puts "se creo el usuario ADMINISTRADOR" 
+    puts ">>>>>>>>>>   USER:  admin@gmail.com"
+    puts ">>>>>>>>>PASSWORD:  changeme"
    
