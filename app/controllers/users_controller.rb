@@ -35,7 +35,8 @@ class UsersController < ApplicationController
 
   def admin_only
     unless current_user.admin?
-      redirect_to :back, :alert => "Access denied."
+      redirect_to root_path, :alert => "Access denied."
+     # redirect_to ":back", :alert => "Access denied."  # Si escribe la url  ":BACK" , FALLA. por no existir un historico de click
     end
   end
 
