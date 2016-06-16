@@ -10,11 +10,12 @@ class SupportsController < ApplicationController
 
   def create
     @support = Support.new(support_params)
-    @support.user = current_user
+    @support.user_id = current_user.id
+    @support.state=false
     if @support.save
       redirect_to supports_path, notice: "El Post fue creado exitosamente."
     else
-      render :new   # se ubica de nuevo en la vista que se indique
+     render 'new'
     end		
   end
 
@@ -25,11 +26,12 @@ class SupportsController < ApplicationController
   def set_info
      @categorias = Category.all.order(:title)
      @sub_categorias = SubCategory.all.order(:name)
+     @prioridades=Priority.all
   end
 
   private 
     def support_params
-      params.require(:support).permit(:titulo, :cuerpo)		
+      params.require(:support).permit(:title, :sub_categories_id, :description, :priority_id, :screen)		
     end
 
 end

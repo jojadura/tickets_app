@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :sub_categories
   devise_for :users
   resources :users
-  get 'supports/:category/subcategories' => 'supports#subcategories', as: 'subcategories'
+ # get 'supports/:category/subcategories' => 'supports#subcategories', as: 'subcategories'
   
 end
 

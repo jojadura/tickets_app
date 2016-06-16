@@ -13,8 +13,10 @@
 
 class Support < ActiveRecord::Base
   belongs_to :subCategory
+  belongs_to :user
+  validates :title, :description,:sub_categories_id, :priority_id, presence: {message: "es requerido"} 
+  mount_uploader :screen, ScreenUploader
 
-  
  def category_id
    return self.subCategory.category.id unless self.subCategory.nil?
  end  
