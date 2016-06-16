@@ -20,12 +20,12 @@
 				</div>
 	   		    <div class="form-group">
 				   <%= f.label :category_id %><br />
-				   <%= f.collection_select :category_id, Category.order(:title), :id, :title, {prompt: "-- Selecione una Categoria --"}, {class: "form-control"} %>            	
+				   <%= f.collection_select :category_id, @categorias, :id, :title, {prompt: "-- Selecione una Categoria --"}, {class: "form-control"} %>            	
 				</div>
 
 	   		    <div class="form-group">
-				   <%= f.label :subcategory_id %><br />
-				   <%= f.collection_select :subcategory_id, SubCategory.order(:name), :id, :name, {prompt: "-- Selecione una SubCategoria --"}, {class: "form-control"} %>            	
+				   <%= f.label :sub_categories_id %><br />
+				   <%= f.grouped_collection_select(:sub_categories_id, @categorias,:subCategories,:title, :id, :name,{},{:class=> 'form-control'}) %>            	
 				</div>
 
 				<div class="form-group">

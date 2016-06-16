@@ -12,6 +12,11 @@
 #
 
 class Support < ActiveRecord::Base
-  belongs_to :category
-  belongs_to :sub_category
+  belongs_to :subCategory
+
+  
+ def category_id
+   return self.subCategory.category.id unless self.subCategory.nil?
+ end  
 end
+
