@@ -26,6 +26,8 @@ gem 'annotate'
 #Users
 gem 'devise'
 #Markdown
+gem 'carrierwave'
+gem "mini_magick"
 gem 'redcarpet'
 gem 'coffee-script-source', '1.8.0'
 gem 'sdoc', '~> 0.4.0', group: :doc

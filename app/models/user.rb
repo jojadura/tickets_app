@@ -41,7 +41,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :categories
-  has_many :sub_categories
+  has_many :subCategories
   belongs_to :role
+  has_many :supports
 end
 
