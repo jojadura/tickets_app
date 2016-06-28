@@ -4,7 +4,7 @@
 <% end %>
 <% if current_user.usuario? %>
  <li><%= link_to "Otro link usuario 1", "#" %></li>
-  <li><%= link_to "Soporte", "#" %></li>
+  <li><%= link_to "Soporte", supports_path %></li>
 <% end %>
 <% if current_user.director? %>
   <li><%= link_to "Otro link Director 1", "#" %></li>

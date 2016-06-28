@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :states
   resources :priorities
   resources :roles
   root 'categories#index'

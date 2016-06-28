@@ -1,7 +1,7 @@
 class SupportsController < ApplicationController
   before_action :set_info, only: [:new, :create]
   def index
-    @supports = Support.all.order("created_at DESC")
+    @supports = current_user.supports.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -11,7 +11,6 @@ class SupportsController < ApplicationController
   def create
     @support = Support.new(support_params)
     @support.user_id = current_user.id
-    @support.state=false
     if @support.save
       redirect_to supports_path, notice: "El Post fue creado exitosamente."
     else
@@ -31,7 +30,7 @@ class SupportsController < ApplicationController
 
   private 
     def support_params
-      params.require(:support).permit(:title, :sub_categories_id, :description, :priority_id, :screen)		
+      params.require(:support).permit(:state_id,:title, :sub_categories_id, :description, :priority_id, :screen)		
     end
 
 end

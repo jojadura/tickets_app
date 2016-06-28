@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616202440) do
+ActiveRecord::Schema.define(version: 20160627214135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20160616202440) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.string   "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sub_categories", force: :cascade do |t|
     t.string   "name"
     t.integer  "category_id"
@@ -56,12 +63,13 @@ ActiveRecord::Schema.define(version: 20160616202440) do
     t.datetime "updated_at",        null: false
     t.integer  "sub_categories_id"
     t.integer  "priority_id"
-    t.boolean  "state"
     t.integer  "user_id"
     t.string   "screen"
+    t.integer  "state_id"
   end
 
   add_index "supports", ["priority_id"], name: "index_supports_on_priority_id", using: :btree
+  add_index "supports", ["state_id"], name: "index_supports_on_state_id", using: :btree
   add_index "supports", ["sub_categories_id"], name: "index_supports_on_sub_categories_id", using: :btree
   add_index "supports", ["user_id"], name: "index_supports_on_user_id", using: :btree
 
@@ -89,5 +97,6 @@ ActiveRecord::Schema.define(version: 20160616202440) do
   add_foreign_key "sub_categories", "categories"
   add_foreign_key "sub_categories", "users"
   add_foreign_key "supports", "priorities"
+  add_foreign_key "supports", "states"
   add_foreign_key "supports", "users"
 end
