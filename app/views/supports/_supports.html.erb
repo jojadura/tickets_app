@@ -1,0 +1,31 @@
+<%= paginate @supports %>
+<table class="table table-responsive">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>Description</th>
+      <th>Creado</th>
+      <th>Categoria</th>
+      <th>Subcategoria</th>
+      <th>Prioridad</th>
+      <th>Image</th>
+      <th colspan=2></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @supports.each do |support| %>
+      <tr  style="background-color:<%= support.state.color %>">
+        <td><%= link_to support.title, support %></td>
+        <td><%= support.description %></td>
+        <td><%= support.created_at %></td>
+        <td><%= support.subCategory.category.title %></td>
+        <td><%= support.subCategory.name %></td>
+        <td><%= support.priority.name %></td>
+        <td><%= image_tag(support.screen.url(:thumb), size: "40X40") %></td>
+        <td><%= link_to 'Cerrar', close_support_path(support), method: :close, data: { confirm: 'Esta seguro de cerrar el ticket?' } %></td>
+        <td> <div style="background-color:<%= support.state.color %>"> <%= support.state.name %></div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

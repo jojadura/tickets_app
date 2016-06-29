@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
 
+  resources :comments
   get 'assistance/index'
 
   get 'assistance/close'
-  get 'assistance/show/:id', to: 'assistance#show', as: 'assistance'
+  match 'assistance/show/:id', to: 'assistance#show', as: 'assistance', via:[:get, :post]
+#  post 'assistance/show/:id', to: 'assistance#show', as: 'assistance_post'
   post 'assistance/:id/close', to: 'assistance#pre_close', as: 'pre_close_support_assistance'
 
   resources :states
@@ -14,6 +16,8 @@ Rails.application.routes.draw do
   resources :supports do
     member do
       post 'close'
+      post 'show'
+      get 'show'
     end
   end
   resources :categories

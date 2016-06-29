@@ -17,9 +17,13 @@ class Support < ActiveRecord::Base
   belongs_to :user
   belongs_to :state
   belongs_to :priority
+  has_many :comments
+  validates_associated :comments
+  accepts_nested_attributes_for :comments  
+
   validates :title, :description,:sub_categories_id, :priority_id, presence: {message: "es requerido"} 
   mount_uploader :screen, ScreenUploader
-  
+ 
 
   after_initialize :set_default_state, :if => :new_record?
 
