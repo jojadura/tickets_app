@@ -32,9 +32,27 @@ class Support < ActiveRecord::Base
    self.save
  end
 
+ def pre_close
+   self.state_id = State.pre_finalizado.id 
+   self.save
+ end
+ def pending
+   self.state_id = State.pendiente.id 
+   self.save
+ end
+
  def category_id
    return self.subCategory.category.id unless self.subCategory.nil?
  end
+
+ def self.search(search)
+  if search
+    where("title LIKE ?", "%#{search}%")
+  else
+    all
+  end
+ end
+
 
 end
 

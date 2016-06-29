@@ -1,6 +1,9 @@
 <% if current_user.admin? %>
- <li>item admin 1</li>
+ <li><%= link_to "Asistencia", assistance_index_path %></li>
+ <li><%= link_to "Prioridades", priorities_path %></li>
+ <li><%= link_to "Estados", states_path %></li>
  <li><%= link_to "Administración de usuarios", users_path %></li>
+ 
 <% end %>
 <% if current_user.usuario? %>
  <li><%= link_to "Otro link usuario 1", "#" %></li>

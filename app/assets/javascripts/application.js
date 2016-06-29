@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(function () {
+  $("#search").keyup(function(){
+     $("#supports_search").submit();
+  });
+});

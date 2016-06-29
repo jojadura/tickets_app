@@ -3,4 +3,6 @@ class State < ActiveRecord::Base
 
 	scope :abierto, ->{find_by(:name=> Rails.application.secrets.abierto )}
 	scope :finalizado, ->{find_by(:name=> Rails.application.secrets.finalizado )}
+	scope :pre_finalizado, ->{find_by(:name=> Rails.application.secrets.pre_finalizado )}
+	scope :pendiente, ->{find_by(:name=> Rails.application.secrets.pendiente )}
 end
