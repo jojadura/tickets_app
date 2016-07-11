@@ -2,7 +2,13 @@ class SupportsController < ApplicationController
   before_action :set_info, only: [:new, :create]
   before_action :set_support, only: [:show, :close,:update]
   def index
-    @supports = current_user.supports.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+   #  unless request.xhr?
+   #    session[:page] = params[:page]
+       @supports = current_user.supports.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+    # else 
+    #  params.to_yaml
+    #   @supports = current_user.supports.search(params[:search]).order("created_at DESC").page(session[:page]).per(10)
+    # end
   end
 
   def new
