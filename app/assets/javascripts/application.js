@@ -15,12 +15,20 @@
 //= require turbolinks
 //= require_tree .
 
-
-$(function () {
+ready= function(){ 
   $("#search").keyup(function(){
      $("#supports_search").submit();
-  });
+     console.log("levante tecla")
+  });   
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+$(function () {
+
+
   setInterval(function() {
      $("#supports_search").submit();
-     }, 5 * 1000);
+   }, 5 * 1000);
 });

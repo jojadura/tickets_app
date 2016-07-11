@@ -20,4 +20,13 @@ class ApplicationController < ActionController::Base
       }
     end
   end
+
+   def after_sign_in_path_for(resource)
+     super
+     flash.now[:notice] = 'Signed in as Super Admin'
+     if current_user.role.name= "Usuario"
+      supports_path
+     end
+
+  end 
 end
