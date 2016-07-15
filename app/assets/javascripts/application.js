@@ -18,7 +18,7 @@
 ready= function(){ 
   $("#search").keyup(function(){
      $("#supports_search").submit();
-     console.log("levante tecla")
+     
   });   
 };
 
@@ -30,5 +30,6 @@ $(function () {
 
   setInterval(function() {
      $("#supports_search").submit();
+     console.log("ejecute ")
    }, 5 * 1000);
 });

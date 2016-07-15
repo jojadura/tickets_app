@@ -4,7 +4,7 @@ class SupportsController < ApplicationController
   def index
    #  unless request.xhr?
    #    session[:page] = params[:page]
-       @supports = current_user.supports.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+       @supports = current_user.supports.all_order params[:search], params[:page], 10
     # else 
     #  params.to_yaml
     #   @supports = current_user.supports.search(params[:search]).order("created_at DESC").page(session[:page]).per(10)
