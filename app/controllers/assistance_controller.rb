@@ -1,7 +1,7 @@
 class AssistanceController < ApplicationController
 before_action :set_support, only: [:show,:pre_close]
   def index
-  	 @supports = Support.search(params[:search]).order("created_at DESC").page(params[:page]).per(20)
+  	 @supports = Support.all_order params[:search], params[:page], 20
   end
 
   def close

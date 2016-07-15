@@ -56,7 +56,7 @@ class Support < ActiveRecord::Base
     all
   end
  end
-
+ scope :all_order, ->(search,page,pagination){joins(:state).search(search).order("states.order, created_at").page(page).per(pagination)}
 
 end
 
