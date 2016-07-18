@@ -4,7 +4,7 @@
  
  <%= form_tag assistance_index_path, :method =>'get',:remote=>true, :id=>"supports_search" do %>
    <%= text_field_tag :search, params[:search], :placeholder=>"Escriba aquí para buscar" %>
-
+   <%= hidden_field_tag :page, params[:page] %>
  <% end %>
 
 

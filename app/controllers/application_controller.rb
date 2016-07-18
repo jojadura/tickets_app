@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
  before_action :configure_devise_permitted_parameters, if: :devise_controller?
-
+before_action :authenticate_user!
   protected
 
   def configure_devise_permitted_parameters
@@ -22,10 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
    def after_sign_in_path_for(resource)
-     super
-     flash.now[:notice] = 'Signed in as Super Admin'
-     if current_user.role.name= "Usuario"
+     if current_user.role.name == "Usuario"
       supports_path
+    elsif current_user.role.name == "Administrador" 
+      flash.now[:notice] = 'Logueado como Super Admin'
+      assistance_index_path
      end
 
   end 
