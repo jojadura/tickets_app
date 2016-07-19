@@ -32,17 +32,18 @@ class Support < ActiveRecord::Base
   end
 
  def close
-   self.state_id = State.finalizado.id 
-   self.save
+    update_attribute("state_id",State.finalizado.id)
+    update_attribute("date_close", DateTime.now.to_date)
  end
 
  def pre_close
-   self.state_id = State.pre_finalizado.id 
-   self.save
+     update_attribute("state_id",State.pre_finalizado.id)
+     update_attribute("date_close",DateTime.now.to_date)
+     
  end
  def pending
-   self.state_id = State.pendiente.id 
-   self.save
+    update_attribute("state_id",State.pendiente.id)
+    
  end
 
  def category_id
