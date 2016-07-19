@@ -23,7 +23,7 @@
         <td><%= support.subCategory.name %></td>
         <td><%= support.priority.name %></td>
         <td><%= image_tag(support.screen.url(:thumb), size: "40X40") %></td>
-        <td><%= link_to 'Cerrar', pre_close_support_assistance_path(support), method: :pre_close, data: { confirm: 'Esta seguro de cerrar el ticket?' } %></td>
+        <td><%= link_to 'Cerrar', pre_close_support_assistance_path(support), method: :pre_close, data: { confirm: 'Esta seguro de cerrar el ticket?' } unless support.state.order>2 %></td>
         <td> <div style="background-color:<%= support.state.color %>"> <%= support.state.name %></div></td>
       </tr>
     <% end %>
