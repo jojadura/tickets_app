@@ -13,13 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
 
 ready= function(){ 
   $("#search").keyup(function(){
      $("#supports_search").submit();
      
-  });   
+  }); 
+  $("#miboton").click(function(){
+   $('#ajax-modal').modal('show');   
+   });
 };
 
 $(document).ready(ready);

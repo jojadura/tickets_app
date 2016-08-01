@@ -1,4 +1,5 @@
 class AssistanceController < ApplicationController
+before_action :user_admin?
 before_action :set_support, only: [:show,:pre_close]
   def index
   	 @supports = Support.all_order params[:search], params[:page], 20

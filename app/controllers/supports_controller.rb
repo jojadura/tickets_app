@@ -1,4 +1,5 @@
 class SupportsController < ApplicationController
+  before_action :user_usuario?
   before_action :set_info, only: [:new, :create]
   before_action :set_support, only: [:show, :close,:update]
   def index
