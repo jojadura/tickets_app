@@ -3,7 +3,7 @@
   <thead>
     <tr>
       <th>title</th>
-      <th>Description</th>
+      <th>Funcionario</th>
       <th>Creado</th>
       <th>Categoria</th>
       <th>Subcategoria</th>
@@ -17,7 +17,7 @@
     <% @supports.each do |support| %>
       <tr  style="background-color:<%= support.state.color %>">
         <td><%= link_to support.title, assistance_path(support) %></td>
-        <td><%= support.description %></td>
+        <td><%= support.user.name %></td>
         <td><%= support.created_at %></td>
         <td><%= support.subCategory.category.title %></td>
         <td><%= support.subCategory.name %></td>

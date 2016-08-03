@@ -1,4 +1,5 @@
 class SupportsController < ApplicationController
+  before_action :user_usuario?
   before_action :set_info, only: [:new, :create]
   before_action :set_support, only: [:show, :close,:update]
   def index
@@ -51,8 +52,13 @@ class SupportsController < ApplicationController
     end
   end
   def close
-    @support.close
-    redirect_to supports_path, notice: "El ticket fue cerrado exitosamente."
+        respond_to do |format|
+          format.html {render :close}
+          format.js
+        end
+    if request.post?
+      @support.close  support_close_params[:encuesta].to_i
+    end
   end
 
 
@@ -65,8 +71,13 @@ class SupportsController < ApplicationController
      @sub_categorias = SubCategory.all.order(:name)
      @prioridades=Priority.all
   end
+  
 
   private 
+    def support_close_params
+      params.require(:support).permit(:encuesta)
+    end
+
     def support_params
       params.require(:support).permit(:user_id ,:state_id,:title, :sub_categories_id, :description, :priority_id, :screen, comments_attributes:[:note,:user_id,:read])		
     end

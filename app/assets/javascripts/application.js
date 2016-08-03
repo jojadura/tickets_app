@@ -13,13 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
 
 ready= function(){ 
   $("#search").keyup(function(){
      $("#supports_search").submit();
      
-  });   
+  }); 
+// esta funcion se declara aquí, para que funcione la primera 
+//ves el click modal en close.  
+$(".boton_modal").click(function(){
+  $('#ajax-modal').modal('show');   
+});
+  
+ 
 };
 
 $(document).ready(ready);
@@ -30,6 +38,6 @@ $(function () {
 
   setInterval(function() {
      $("#supports_search").submit();
-     console.log("ejecute ")
-   }, 5 * 10000);
+    console.log("ejecute ")
+   }, 5 * 1000);
 });

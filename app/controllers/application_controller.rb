@@ -4,9 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
  before_action :configure_devise_permitted_parameters, if: :devise_controller?
-before_action :authenticate_user!
-  protected
 
+ helper_method :user_admin?,:user_usuario?
+
+  protected
+  def user_admin?
+   current_user.admin?
+  end
+  def user_usuario?
+   current_user.usuario?
+  end  
   def configure_devise_permitted_parameters
     registration_params = [:name, :email, :password, :password_confirmation]
 
@@ -29,5 +36,5 @@ before_action :authenticate_user!
       assistance_index_path
      end
 
-  end 
+   end 
 end

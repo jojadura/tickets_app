@@ -1,5 +1,6 @@
 <div class="container">
     <div class="row">
+       <%= link_to "Nueva categoria", new_category_path, class: "btn btn-default" %>
         <div class="col-sm-8 col-sm-offset-1">
             <table class="table table-responsive">
                 <thead>
@@ -13,7 +14,7 @@
                     <td id="colorName-cat"><h3><%= category.title %>
                     <td class="text-left">
                       <div id="body-categories">
-                        <span>Creado por <%= category.user.email %> hace <%= time_ago_in_words category.created_at %> </span>
+                        <span>Creado por <%= category.user.email %> hace <%= time_ago_in_words category.created_at unless category.created_at == nil %> </span>
                       </div>              
                     </td>
                     <td>

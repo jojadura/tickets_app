@@ -26,4 +26,6 @@ en:
       previous: "Previo"
       next: "Siguente"
       truncate: "..."
-
+  errors:
+    messages:
+      extension_white_list_error: "no puede ser del tipo %{extension}. Archivos permitidos: %{allowed_types}"

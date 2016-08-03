@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h3>¿El soporte fue solucionado de forma adecuada?</h3>			
+			<% if @support.errors.any? %>
+			  <div class="alert alert-danger">
+			    <ul>
+			    <% @support.errors.full_messages.each do |msg| %>
+			      <li><%= msg %></li>
+			    <% end %>
+			    </ul>
+			  </div>
+			<% end %>			
+
+			<%= form_for close_support_path(@support) ,html: {:id=>"form_ticket_modal"}, remote: true do |f| %>
+
+	   		    <div class="form-group">
+		          <div class= "btn-group" data-toggle = "buttons">
+		            <label class="btn btn-primary active">
+		              <%= radio_button_tag("support[encuesta]", 0, true) %> Si  </label>
+		             
+		            <label class= "btn btn-primary">
+		              <%= radio_button_tag("support[encuesta]", 1) %>No	 </label>
+		            </div>
+				</div>	
+	
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -12,9 +12,12 @@ Rails.application.routes.draw do
   resources :states
   resources :priorities
   resources :roles
-  root 'categories#index'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
   resources :supports do
     member do
+      get 'close'
       post 'close'
       post 'show'
       get 'show'
