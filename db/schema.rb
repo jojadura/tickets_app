@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719124557) do
+ActiveRecord::Schema.define(version: 20160803024157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,14 +72,17 @@ ActiveRecord::Schema.define(version: 20160719124557) do
   create_table "supports", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "sub_categories_id"
     t.integer  "priority_id"
     t.integer  "user_id"
     t.string   "screen"
     t.integer  "state_id"
     t.datetime "date_close"
+    t.integer  "encuesta",          default: 0
+    t.datetime "date_pending"
+    t.datetime "date_preclose"
   end
 
   add_index "supports", ["priority_id"], name: "index_supports_on_priority_id", using: :btree

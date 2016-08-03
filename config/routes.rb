@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   resources :supports do
     member do
+      get 'close'
       post 'close'
       post 'show'
       get 'show'

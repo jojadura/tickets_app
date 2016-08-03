@@ -1,0 +1,15 @@
+
+// apartado jquery para cargar el titulo del modal.(y hacer un modal dinamico)
+$("#modal-title").text("Cerrar ticket:  <%=  @support.title %>");
+// esta funcion carga el conteindo de la vista parcial _close.js.erb en el div especificado
+$(".modal-body-content").html("<%= escape_javascript(render('close'))%>");
+// carga la view parcial que contiene dos botones en el div especificado
+$(".modal-footer").html("<%= escape_javascript(render('modal_button'))%>");
+
+// esta funcion se declara aquí ya que funciona en el modal.
+ $("#cerrar_ticket_modal").click(function(){
+ 	// envio el form 
+    $('#form_ticket_modal').submit();  
+    // oculto el modal
+    $('#ajax-modal').modal('hide');  
+   }); 

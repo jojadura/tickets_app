@@ -14,6 +14,8 @@
 class Support < ActiveRecord::Base
    belongs_to :subCategory, :class_name=> "SubCategory",
                           :foreign_key=> "sub_categories_id"
+
+  enum encuesta: [:si,:no]                        
   belongs_to :user
   belongs_to :state
   belongs_to :priority
@@ -31,18 +33,20 @@ class Support < ActiveRecord::Base
     self.state_id ||= State.abierto.id
   end
 
- def close
+ def close encuesta=nil
     update_attribute("state_id",State.finalizado.id)
-    update_attribute("date_close", DateTime.now.to_date)
+    update_attribute("encuesta", encuesta) unless encuesta ==nil
+    update_attribute("date_close", DateTime.now)
  end
 
  def pre_close
      update_attribute("state_id",State.pre_finalizado.id)
-     update_attribute("date_close",DateTime.now.to_date)
+     update_attribute("date_preclose",DateTime.now)
      
  end
  def pending
     update_attribute("state_id",State.pendiente.id)
+    update_attribute("date_pending",DateTime.now)
     
  end
 

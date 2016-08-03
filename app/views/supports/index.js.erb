@@ -1,1 +1,5 @@
 $("#supports").html("<%= escape_javascript(render('supports'))%>");
+
+$(".boton_modal").click(function(){
+  $('#ajax-modal').modal('show');   
+});
