@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'infraestructures',to: 'infraestructures#index'
+
+  get 'infraestructures/close'
+  match 'infraestructures/show/:id', to: 'infraestructures#show', as: 'infraestructure', via:[:get, :post]
+#  post 'infraestructures/show/:id', to: 'infraestructures#show', as: 'assistance_post'
+  post 'infraestructures/:id/close', to: 'infraestructures#pre_close', as: 'pre_close_support_infraestructure'
 
   resources :comments
   get 'assistance/index'
@@ -9,7 +15,6 @@ Rails.application.routes.draw do
 #  post 'assistance/show/:id', to: 'assistance#show', as: 'assistance_post'
   post 'assistance/:id/close', to: 'assistance#pre_close', as: 'pre_close_support_assistance'
 
-  resources :states
   resources :priorities
   resources :roles
   devise_scope :user do

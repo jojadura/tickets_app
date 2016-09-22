@@ -31,10 +31,7 @@
 				<div class="form-group">
 					<%=  f.text_area :description, class: "form-control input-lg", placeholder: "Ingresa la descripción del Soporte" %>
 				</div>
-	   		    <div class="form-group">
-				   <%= f.label :priority_id %><br />
-				   <%= f.collection_select :priority_id, @prioridades, :id, :name, {prompt: "-- Selecione una Prioridad --"}, {class: "form-control"} %>            	
-				</div>	
+
 	   		    <div class="form-group">
 				   <%= f.label :screen %><br />
 				   <%= f.file_field :screen,  class: "form-control" %>            	

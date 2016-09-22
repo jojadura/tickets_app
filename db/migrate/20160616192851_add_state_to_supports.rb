@@ -1,5 +1,5 @@
 class AddStateToSupports < ActiveRecord::Migration
   def change
-    add_column :supports, :state, :boolean
+    add_column :supports, :state, :integer
   end
 end

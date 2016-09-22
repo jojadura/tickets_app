@@ -11,6 +11,7 @@ default: &default
   username: rails
   host: localhost
   password: <%= ENV['APP_DATABASE_PASSWORD'] %> 
+  template: template0
   timeout: 5000
 
 development:

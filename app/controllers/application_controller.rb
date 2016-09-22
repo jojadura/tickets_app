@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
 
   protected
   def user_admin?
-   current_user.admin?
+   redirect_to supports_path , notice: "No tiene permisos" unless current_user.admin?
   end
   def user_usuario?
-   current_user.usuario?
+   redirect_to assistance_index_path , notice: "No tiene permisos" unless current_user.usuario?
   end  
   def configure_devise_permitted_parameters
     registration_params = [:name, :email, :password, :password_confirmation]

@@ -1,8 +1,8 @@
-class AssistanceController < ApplicationController
+class InfraestructuresController < ApplicationController
 before_action :user_admin?
 before_action :set_support, only: [:show,:pre_close]
   def index
-  	 @supports = Support.all_order params[:search], params[:page], 20
+  	 @supports = Support.infraestructure params[:search], params[:page], 20
   end
 
   def close
@@ -15,8 +15,7 @@ before_action :set_support, only: [:show,:pre_close]
       @comment.assign_attributes(comment_params)
      
       if @comment.save
-        SendMailer.comment_email(current_user, @comment.user,@support, @comment).deliver_now 
-        redirect_to assistance_path(@support), method: :show, notice: 'El comentario fue creado'
+        redirect_to infraestructure_path(@support), method: :show, notice: 'El comentario fue creado'
       else
         render :show
       end
@@ -25,7 +24,7 @@ before_action :set_support, only: [:show,:pre_close]
 
   def pre_close
     @support.pre_close  
-    redirect_to assistance_index_path, notice: "El ticket fue cerrado exitosamente."
+    redirect_to infraestructures_path, notice: "El ticket fue cerrado exitosamente."
   end
   private 
    

@@ -39,5 +39,5 @@ $(function () {
   setInterval(function() {
      $("#supports_search").submit();
     console.log("ejecute ")
-   }, 5 * 1000);
+   }, 100 * 1000);
 });

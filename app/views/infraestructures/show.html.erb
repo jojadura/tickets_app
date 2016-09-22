@@ -36,7 +36,7 @@
   <strong>Imagen:</strong>
   <%= image_tag  @support.screen %>
 </p>
-<%= link_to 'Back', assistance_index_path %>
+<%= link_to 'Back', infraestructures_path %>
 
     <% if @support.comments.any? %>
         <% @support.comments.each do |comment| %>
@@ -51,7 +51,7 @@
     <% end %>
 
  <% unless @support.state.try(:name)==Rails.application.secrets.finalizado || @support.state.try(:name)==Rails.application.secrets.pre_finalizado %>
-    <%= form_for(@comment, url:assistance_path) do |f| %>
+    <%= form_for(@comment, url:infraestructure_path) do |f| %>
       <% if @comment.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
