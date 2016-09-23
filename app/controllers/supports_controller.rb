@@ -22,6 +22,9 @@ class SupportsController < ApplicationController
       @comment.assign_attributes(comment_params)
      
       if @comment.save
+        Role.admin.users.each do |user|
+         SendMailer.comment_email(current_user, user,@support, @comment).deliver_now       
+       end
         redirect_to support_path(@support), method: :show, notice: 'State was successfully created.'
       else
         render :show

@@ -19,7 +19,9 @@
 
 class User < ActiveRecord::Base
 
-  validates :name, :email, presence: {message: "es requerido"} 
+  validates :name, :email, presence: {message: "es requerido"}
+  validates_format_of :email, :with =>  /\b[A-Z0-9._%a-z\-]+@ccibague\.org\z/,
+                  message: "Debe ser del dominio @ccibague.org" 
  
   after_initialize :set_default_role, :if => :new_record?
 

@@ -30,7 +30,7 @@
 </p>
 <p>
   <strong>Estado:</strong>
-  <%= @support.state.name %>
+  <%= @support.state %>
 </p>
 <p>
   <strong>Imagen:</strong>
@@ -38,7 +38,7 @@
 </p>
 <% if @support.comments.any? %>
     <% @support.comments.each do |comment| %>
-    <p>
+    <p class="<%= "bg-success" if  comment.user.role.try(:name)== "Administrador" %>">
       <label>Usuario:</label><%= comment.user.name %>
       <br>
       <label>Mensaje:</label><%= comment.note %>
@@ -48,26 +48,27 @@
     <% end %>
 <% end %>
 <%= link_to 'Back', supports_path %>
+ <% unless @support.state.try(:name)==Rails.application.secrets.finalizado || @support.state.try(:name)==Rails.application.secrets.pre_finalizado %>
+    <%= form_for(@comment, url:support_path) do |f| %>
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
-<%= form_for(@comment, url:support_path) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-      <% @comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
+
+      <div class="field">
+        <%= f.label :note %><br>
+        <%= f.text_area :note %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_area :note %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

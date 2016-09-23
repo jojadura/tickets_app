@@ -1,9 +1,17 @@
-<%= paginate @supports %>
+
+<h1>Listing Supports</h1>
+ 
+ <%= form_tag supports_path, :method =>'get',:remote=>true, :id=>"supports_search" do %>
+   <%= text_field_tag :search, params[:search], :placeholder=>"Escriba aquí para buscar" %>
+   <%= hidden_field_tag :page, params[:page] %>
+
+ <% end %>
+
 <table class="table table-responsive">
   <thead>
     <tr>
       <th>title</th>
-      <th>Funcionario</th>
+      <th>Description</th>
       <th>Creado</th>
       <th>Categoria</th>
       <th>Subcategoria</th>
@@ -15,17 +23,19 @@
 
   <tbody>
     <% @supports.each do |support| %>
-      <tr  style="background-color:<%= set_color_state support.state %>">>
-        <td><%= link_to support.title, assistance_path(support) %></td>
-        <td><%= support.user.name %></td>
+      <tr  style="background-color:<%= set_color_state support.state %>">
+        <td><%= link_to support.title,  charts_report_by_support_path(support) %></td>
+        <td><%= support.description %></td>
         <td><%= support.created_at %></td>
         <td><%= support.subCategory.category.title %></td>
         <td><%= support.subCategory.name %></td>
         <td><%= support.priority.name %></td>
         <td><%= image_tag(support.screen.url(:thumb), size: "40X40") %></td>
-        <td><%= link_to 'Cerrar', pre_close_support_assistance_path(support), method: :pre_close, data: { confirm: 'Esta seguro de cerrar el ticket?' } unless support.pre_finalizado? %></td>
-        <td> <div style="background-color:%= set_color_state support.state %>"></div></td>
+
+
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'New Support', new_support_path %>

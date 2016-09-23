@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+//= require Chart.bundle
+//= require chartkick
 
 ready= function(){ 
   $("#search").keyup(function(){
@@ -39,5 +41,5 @@ $(function () {
   setInterval(function() {
      $("#supports_search").submit();
     console.log("ejecute ")
-   }, 5 * 1000);
+   }, 100 * 1000);
 });

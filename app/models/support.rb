@@ -17,35 +17,45 @@ class Support < ActiveRecord::Base
 
   enum encuesta: [:si,:no]                        
   belongs_to :user
-  belongs_to :state
+  enum state: [:abierto, :pendiente, :pre_finalizado, :cerrado]
   belongs_to :priority
   has_many :comments
   validates_associated :comments
-  #accepts_nested_attributes_for :comments  
+  
 
-  validates :title, :description,:state_id,:sub_categories_id, :priority_id, presence: {message: "es requerido"} 
+  validates :title, :description,:sub_categories_id, presence: {message: "es requerido"} 
   mount_uploader :screen, ScreenUploader
  
+  after_create :set_priority
 
-  after_initialize :set_default_state, :if => :new_record?
-
-  def set_default_state
-    self.state_id ||= State.abierto.id
+  def set_priority
+    # DEBE SER SIEMPRE EL PRIMER REGISTO O ID MÁS BAJO
+    update_attribute("priority_id", Priority.first.id)
+    abierto!
   end
 
+
+
  def close encuesta=nil
-    update_attribute("state_id",State.finalizado.id)
-    update_attribute("encuesta", encuesta) unless encuesta ==nil
-    update_attribute("date_close", DateTime.now)
+    si! if encuesta==0
+    no! if encuesta==1
+    if no?
+      update_attribute("re_open", DateTime.now)
+      abierto!
+      increment!(:re_open_count)
+    else
+     finalizado!
+      update_attribute("date_close", DateTime.now)
+    end 
  end
 
  def pre_close
-     update_attribute("state_id",State.pre_finalizado.id)
+     pre_finalizado!
      update_attribute("date_preclose",DateTime.now)
      
  end
  def pending
-    update_attribute("state_id",State.pendiente.id)
+    pendiente!
     update_attribute("date_pending",DateTime.now)
     
  end
@@ -61,7 +71,14 @@ class Support < ActiveRecord::Base
     all
   end
  end
- scope :all_order, ->(search,page,pagination){joins(:state).search(search).order("states.order, created_at DESC").page(page).per(pagination)}
+ scope :all_order, ->(search,page,pagination){search(search).order("state, created_at DESC").page(page).per(pagination)}
 
+ scope :all_order_infraestructure, ->(search,page,pagination){joins(:sub_categories, :categoires).search(search).order("states.order, created_at DESC").page(page).per(pagination)}
+
+
+ def self.infraestructure search, page, pagination
+   @category = Category.find_by(:title=>'Infraestructura')
+   joins(:subCategory).where("sub_categories.category_id=#{@category.id}").search(search).order("created_at DESC").page(page).per(pagination)
+ end
 end
 

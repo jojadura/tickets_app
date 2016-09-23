@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @support.title %>
+</p>
+<p>
+  <strong>Descripción:</strong>
+  <%= @support.description %>
+</p>
+<p>
+  <strong>Creado el:</strong>
+  <%= @support.created_at %>
+</p>
+<p>
+  <strong>Categoria:</strong>
+  <%= @support.subCategory.category.title %>
+</p>
+<p>
+  <strong>Subcategoria:</strong>
+  <%= @support.subCategory.name %>
+</p>
+<p>
+  <strong>Subcategoria:</strong>
+  <%= @support.subCategory.name %>
+</p>
+<p>
+  <strong>Prioridad:</strong>
+  <%= @support.priority.name %>
+</p>
+<p>
+  <strong>Estado:</strong>
+  <%= @support.state %>
+</p>
+<p>
+  <strong>Imagen:</strong>
+  <%= image_tag  @support.screen %>
+</p>
+
+<%= column_chart @data   %>
