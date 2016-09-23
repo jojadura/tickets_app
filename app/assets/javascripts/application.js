@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+//= require Chart.bundle
+//= require chartkick
 
 ready= function(){ 
   $("#search").keyup(function(){

@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'charts/total_reopen'
+
+  get 'charts/total_by_area'
+
+  get 'charts/report_supports'
+
+  get 'charts/daily_report'
+
+  get 'charts/repot_by_support/show/:id', to: 'charts#report_by_support', as: :charts_report_by_support
+
   get 'infraestructures',to: 'infraestructures#index'
 
   get 'infraestructures/close'
