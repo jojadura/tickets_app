@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'charts/daily_report'
 
+  get 'charts/index'
+
   get 'charts/repot_by_support/show/:id', to: 'charts#report_by_support', as: :charts_report_by_support
 
   get 'infraestructures',to: 'infraestructures#index'

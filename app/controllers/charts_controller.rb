@@ -1,5 +1,16 @@
 class ChartsController < ApplicationController
   before_action :set_support, only: [:report_by_support]
+  
+  def index
+    date_now  = Time.now.strftime("%Y-%m-%d")
+    @start_date = params[:start_date] 
+    @end_date = params[:end_date] 
+    @reports_day = Support.where("cast(created_at as date)='#{date_now}'").count
+     start_date = Date.strptime(@start_date,  "%m/%d/%Y") if @start_date!=nil
+     end_date = Date.strptime(@end_date,  "%m/%d/%Y") if @end_date!=nil
+    @supports = Support.all_order_by_date start_date, end_date, params[:page], 20
+  end 
+
   def total_reopen
   	total_support = Support.all.count
   	total_support_re_open = Support.where('re_open_count is not null').count

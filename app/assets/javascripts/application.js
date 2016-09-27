@@ -17,6 +17,7 @@
 //= require_tree .
 //= require Chart.bundle
 //= require chartkick
+//= require bootstrap-datepicker
 
 ready= function(){ 
   $("#search").keyup(function(){
