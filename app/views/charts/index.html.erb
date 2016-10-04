@@ -1,0 +1,60 @@
+El dia de hoy entraron <%=  @reports_day %> reportes
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Filtro</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+          <%= form_tag charts_index_path, method: :get do %>
+          <div class="form-group">
+            <label for="start_date">Start Date</label>
+            <%= text_field_tag :start_date, params[:start_date].blank? ? (Date.today - 30).strftime("%m/%d/%Y") : params[:start_date] ,  class: "form-control",id: 'start_date'%>
+          </div>
+          <div class="form-group">
+            <label for="end_date"><%= t('filter.end_date_label') %></label>
+            <%= text_field_tag :end_date,  params[:end_date].blank? ? Date.today.strftime("%m/%d/%Y") : params[:end_date] , class: "form-control", id: 'end_date' %>
+          </div>
+          <%= submit_tag "Filtrar", class: "btn btn-default" %>
+          <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#start_date").datepicker({ dateFormat: 'yy-mm-dd' });
+  $("#end_date").datepicker({ dateFormat: 'yy-mm-dd' });
+});
+</script>
+
+<%= paginate @supports %>
+<table class="table table-responsive">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>Description</th>
+      <th>Creado</th>
+      <th>Categoria</th>
+      <th>Subcategoria</th>
+      <th>Funcionario</th>
+      <th colspan=2></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @supports.each do |support| %>
+      <tr  style="background-color:<%= set_color_state support.state %>">
+        <td><%= support.title %></td>
+        <td><%= support.description %></td>
+        <td><%= support.created_at %></td>
+        <td><%= support.subCategory.category.title %></td>
+        <td><%= support.subCategory.name %></td>
+        <td><%= support.user.name %> </td>
+        <td> <div style="background-color:<%= set_color_state support.state %>"> <%= support.state.humanize %></div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+ <%=  link_to "Ver detalles", supports_path,  id: "miboton",  remote: true %>

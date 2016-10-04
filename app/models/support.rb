@@ -75,6 +75,13 @@ class Support < ActiveRecord::Base
 
  scope :all_order_infraestructure, ->(search,page,pagination){joins(:sub_categories, :categoires).search(search).order("states.order, created_at DESC").page(page).per(pagination)}
 
+ def self.all_order_by_date start_date=nil, end_date=nil, page=nil, pagination=nil
+   results= where("state in (1)").order("state, created_at DESC").page(page).per(pagination)
+   results = results.where("created_at>='#{start_date}'") unless start_date == nil || start_date==""
+   results = results.where("created_at<='#{end_date}'") unless end_date == nil || end_date==""
+   results
+ end
+
 
  def self.infraestructure search, page, pagination
    @category = Category.find_by(:title=>'Infraestructura')
